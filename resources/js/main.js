@@ -1,0 +1,1 @@
+/* resources/js/ -> main.js file */

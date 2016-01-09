@@ -1,0 +1,7 @@
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^apis/([A-Za-z0-9-]+)/?$ api/index.php?page=$1 [NC]
+RewriteRule ^page/([A-Za-z0-9-]+)/?$ index.php?page=$1 [NC]
+RewriteRule ^([^\.]+)$ $1.php [NC]

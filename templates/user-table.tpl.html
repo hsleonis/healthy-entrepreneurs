@@ -1,0 +1,16 @@
+<thead>
+    <tr>
+        <th ng-repeat="thead in json.head">{{thead}}</th>
+        <th data-sortable="false"></th>
+    </tr>
+</thead>
+<tbody>
+    <tr ng-repeat="el in json.item" class="{{el.class}}">
+        <td ng-repeat="p in el.data">{{p}}</td>
+        <td>
+            <span class="rm-user" ng-click="rmUser(el.data)"><i class="fa fa-trash"></i>
+</span>
+            <span class="ed-user" ng-click="edUser(el.data)"><i class="fa fa-pencil-square-o"></i></span>
+        </td>
+    </tr>
+</tbody>

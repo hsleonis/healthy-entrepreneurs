@@ -1,0 +1,15 @@
+<thead>
+    <tr>
+        <th ng-repeat="thead in json2.head">{{thead}}</th>
+        <th data-sortable="false"></th>
+    </tr>
+</thead>
+<tbody>
+    <tr ng-repeat="el in json2.item" class="{{el.class}}">
+        <td ng-repeat="p in el.data">{{p}}</td>
+        <td>
+            <span class="rm-user" ng-click="rmQuery(el.data)"><i class="fa fa-trash"></i>
+</span>
+        </td>
+    </tr>
+</tbody>

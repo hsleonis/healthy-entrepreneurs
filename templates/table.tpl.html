@@ -1,0 +1,10 @@
+<thead>
+    <tr>
+        <th ng-repeat="thead in json.head">{{thead}}</th>
+    </tr>
+</thead>
+<tbody>
+    <tr ng-repeat="el in json.item" class="{{el.class}}">
+        <td ng-repeat="p in el.data">{{p}}</td>
+    </tr>
+</tbody>
