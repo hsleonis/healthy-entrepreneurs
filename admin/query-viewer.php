@@ -31,7 +31,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                     <div class="alert alert-success" ng-show="creationMsg">
                                         {{creationMsg}}
                                     </div>
-                                    <form role="form" name="regForm">
+                                    <form role="form" name="regForm" id="regForm">
                                         <div class="input-group col-sm-12">
                                             <div class="form-group col-lg-6">
                                             <label>Gerant ID</label><img src="resources/img/tooltip.png" class="tooltip" title="Lorem Ipsum Dolor Immett" />
@@ -63,11 +63,11 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                             
                                         <?php if(isset($_SESSION['dbname']) && $_SESSION['dbname']=='Business Manager'): ?>
                                         <div class="form-group col-sm-4">
-                                            <label>Report Action</label>
-                                            <select class="form-control" ng-model="query.action" name="reportaction">
+                                            <label for="reportaction">Report Action</label>
+                                            <select id="reportaction" class="form-control" ng-model="query.action" name="reportaction" required>
                                                 <option ng-repeat="item in actionList" value="{{item.id}}">{{item.name}}</option>
                                             </select>
-                                        </div>
+                                        </div><!-- Report action -->
                                         </div><!-- General selection -->
                                         
                                         <div class="input-group col-sm-12">
@@ -97,8 +97,8 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                         
                                         <?php if(isset($_SESSION['dbname']) && $_SESSION['dbname']=='Sensibilization'): ?>
                                         <div class="form-group col-sm-4">
-                                            <label>Report Action</label>
-                                            <select class="form-control" ng-model="query.action" name="reportaction">
+                                            <label for="reportaction">Report Action</label>
+                                            <select id="reportaction" class="form-control" ng-model="query.action" name="reportaction" required>
                                                 <option ng-repeat="item in actionList" value="{{item.id}}">{{item.name}}</option>
                                             </select>
                                         </div><!-- Report action -->

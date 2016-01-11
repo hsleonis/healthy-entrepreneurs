@@ -42,6 +42,8 @@ $(function() {
     
     $('.tooltip').tooltipster();
     
+    $("#regform").validate();
+    
     $(document).scroll(function() {
 		var scroll	=	$(window).scrollTop();
 		var height	=	200;
