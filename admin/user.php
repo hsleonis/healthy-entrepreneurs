@@ -42,6 +42,7 @@
                                         <div class="form-group col-lg-6">
                                             <label>Area</label>
                                             <select class="form-control" ng-model="user.areacode">
+                                                <option value=""></option>
                                                 <option ng-repeat="item in areaList" value="{{item.id}}">{{item.name}}</option>
                                             </select>
                                         </div>

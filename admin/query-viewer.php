@@ -40,6 +40,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                             <div class="form-group col-lg-6">
                                             <label>Gerant Area</label><img src="resources/img/tooltip.png" class="tooltip" title="Lorem Ipsum Dolor Immett" />
                                             <select class="form-control" ng-model="query.areaselector" name="areaselector">
+                                                <option value=""></option>
                                                 <option ng-repeat="item in areaList" value="{{item.id}}">{{item.name}}</option>
                                             </select>
                                         </div><!-- gerant area -->
@@ -94,15 +95,13 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                         <?php endif; ?>
                                         
                                         
-                                        
-                                        
                                         <?php if(isset($_SESSION['dbname']) && $_SESSION['dbname']=='Sensibilization'): ?>
                                         <div class="form-group col-sm-4">
                                             <label>Report Action</label>
                                             <select class="form-control" ng-model="query.action" name="reportaction">
                                                 <option ng-repeat="item in actionList" value="{{item.id}}">{{item.name}}</option>
                                             </select>
-                                        </div>
+                                        </div><!-- Report action -->
                                         </div><!-- General selection -->
                                     
                                         <!-- accordian -->
