@@ -110,13 +110,13 @@
                                             <label>Email</label>
                                             <input class="form-control" placeholder="Email" ng-model="eduser.username" ng-value="ed[2]">
                                         </div>
-                                        <div class="form-group col-lg-6">
+                                        <!--<div class="form-group col-lg-6">
                                             <label>Password</label>
                                             <input class="form-control" placeholder="Password" type="text" ng-model="eduser.password" ng-value="ed[3]">
-                                        </div>
+                                        </div>-->
                                         <div class="form-group col-lg-6">
                                             <label>Area</label>
-                                            <select class="form-control" ng-model="eduser.areacode" ng-options="item.name for item in areaList track by item.id" ng-selected="ed[4]==item.id">
+                                            <select class="form-control" ng-model="eduser.areacode" ng-options="item.name for item in areaList track by item.id" ng-selected="ed[3]==item.id">
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-6">

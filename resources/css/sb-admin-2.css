@@ -206,6 +206,10 @@ p a,p a:hover,p a:active{
     z-index: 9;
 }
 
+.csvbtn {
+    display: inline;
+}
+
 .panel {
     border: 0 none;
     border-radius: 0;

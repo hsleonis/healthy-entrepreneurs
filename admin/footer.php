@@ -25,6 +25,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="resources/js/jquery.tooltipster.min.js"></script>
+    <script src="resources/js/table2CSV.js"></script>
     <script src="resources/js/sb-admin-2.js"></script>
     
     <!-- Angular -->

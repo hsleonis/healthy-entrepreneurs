@@ -26,6 +26,7 @@
 .show-btn {
     display: none;
     margin-bottom: 15px;
+    margin-left: 0;
 }
 
 .login-page-header {
@@ -120,4 +121,8 @@ img.tooltip {
     padding-left: 0.75em;
     padding-right: 0.75em;
     border: 2px groove rgba(0,0,0,0.1);
+}
+
+select.ng-invalid-required {
+    border: 1px solid #E00000;
 }

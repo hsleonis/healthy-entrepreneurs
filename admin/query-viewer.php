@@ -63,7 +63,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                             
                                         <?php if(isset($_SESSION['dbname']) && $_SESSION['dbname']=='Business Manager'): ?>
                                         <div class="form-group col-sm-4">
-                                            <label for="reportaction">Report Action</label>
+                                            <label for="reportaction">Report Action *</label>
                                             <select id="reportaction" class="form-control" ng-model="query.action" name="reportaction" required>
                                                 <option ng-repeat="item in actionList" value="{{item.id}}">{{item.name}}</option>
                                             </select>
@@ -97,7 +97,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                         
                                         <?php if(isset($_SESSION['dbname']) && $_SESSION['dbname']=='Sensibilization'): ?>
                                         <div class="form-group col-sm-4">
-                                            <label for="reportaction">Report Action</label>
+                                            <label for="reportaction">Report Action *</label>
                                             <select id="reportaction" class="form-control" ng-model="query.action" name="reportaction" required>
                                                 <option ng-repeat="item in actionList" value="{{item.id}}">{{item.name}}</option>
                                             </select>
@@ -260,6 +260,10 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                     <span>{{querySavedMsg}}</span>
                                     <button class="btn btn-default" data-ng-click="saveQuery()">Save Query</button>
                                     <a href="page/assign-query"><button class="btn btn-default">Assign To</button></a>
+                                    <form class="csvbtn" action="getCSV.php" method="post" target="_blank"> 
+                                        <input type="hidden" name="csv_text" id="csv_text" />
+                                        <input class="btn btn-default" type="submit" value="Download as CSV" onclick="getCSVData()" />
+                                    </form>
                                 </div>
                                 <table id="data-table" class="table table-striped table-bordered table-hover" ng-query-table></table>
                             </div>

@@ -133,27 +133,24 @@ app.controller('queryController', [ '$http', '$scope', function ($http, $scope) 
     // Create Query
     $scope.createQuery = function(query){
         $('.preloader').show(50);
+        if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
+            table.destroy();
+        }
+        
         $scope.query.query = 'true'; // For testing DB Name
         $scope.query.dbid = curdb; // For testing DB ID
         
         $http.post(baseURL+'query_db',query).success(function(data){
-            
-            if(data.code==0) alert(data.response);
-            else {
-                if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
-                    table.destroy();
-                }
-                
-                $scope.json = data.data;
-                setTimeout(function(){
-                    table=$('#data-table').DataTable({
-                            responsive: true
-                    });
-                    console.info('Table initialized.');
-                    $('.preloader').hide(200);
-                    $('.show-btn').show();
-                },100);
-            }
+            $scope.json = data.data;
+            alert(data.response);
+            setTimeout(function(){
+                table=$('#data-table').DataTable({
+                        responsive: true
+                });
+                console.info('Table initialized.');
+                $('.preloader').hide(200);
+                $('.show-btn').show();
+            },100);
         });
     };
     

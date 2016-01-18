@@ -42,7 +42,7 @@ $(function() {
     
     $('.tooltip').tooltipster();
     
-    $("#regform").validate();
+    $("#regForm").validate();
     
     $(document).scroll(function() {
 		var scroll	=	$(window).scrollTop();
@@ -56,3 +56,8 @@ $(function() {
 		}
     });
 });
+
+function getCSVData(){
+ var csv_value=$('#data-table').table2CSV({delivery:'value'});
+ $("#csv_text").val(csv_value);	
+}

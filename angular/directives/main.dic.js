@@ -43,7 +43,7 @@ app.directive('ngQueryTable', function() {
                 
             });
         },
-        templateUrl: 'templates/user-table.tpl.html',
+        templateUrl: 'templates/table.tpl.html',
         controller: 'queryController',
         controllerAs: 'tblCtrl'
     }
