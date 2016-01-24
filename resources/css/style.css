@@ -112,6 +112,7 @@ img.tooltip {
     position: relative;
     float: right;
     opacity: 1;
+    z-index: 1;
 }
 
 .input-group {

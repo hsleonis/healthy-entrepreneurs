@@ -52,11 +52,11 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                         <div class="input-group col-sm-12">
                                         <div class="form-group col-sm-4">
                                             <label>Start date</label>
-                                            <input class="form-control date-picker" type="text" placeholder="Start date" ng-model="query.start_date" name="startdate" value="">
+                                            <input class="form-control date-picker" type="text" placeholder="Start date" ng-model="query.start_date" name="startdate">
                                         </div><!-- start date -->
                                         <div class="form-group col-sm-4">
                                             <label>End date</label>
-                                            <input class="form-control date-picker" type="text" placeholder="End date" ng-model="query.end_date" name="enddate" value="">
+                                            <input class="form-control date-picker" type="text" placeholder="End date" ng-model="query.end_date" name="enddate">
                                         </div><!-- end date -->
                                         
                                             

@@ -1,47 +1,48 @@
 /*
 User controller
 */
-
-function split(val) {
-    return val.split(/,\s*/);
+function globalvars() {
+    return {
+        baseURL : 'http://37.230.100.79/dashb/api/',
+        userAPI : 'apis/userAPI'
+    };
 }
-			
-function extractLast(term) {
-    return split(term).pop();
+function split( val ) {
+  return val.split( /,\s*/ );
 }
-
+function extractLast( term ) {
+  return split( term ).pop();
+}
 function leoAuto(id,data) {
-    $(id).bind("keydown", function(event) {
-            if (event.keyCode === $.ui.keyCode.TAB && $(this).data("ui-autocomplete").menu.active) {
-                event.preventDefault();
-            }
-        }).autocomplete({
-            source: function(request, response) {
-					//delegate back to autocomplete, but extract the last term
-					response($.ui.autocomplete.filter(data, extractLast(request.term)));
-				},
-            multiselect: true,
-            select: function(event, ui) {
-					var terms = split(this.value);
-					//remove the current input
-					terms.pop();
-					//add the selected item
-					terms.push(ui.item.value);
-					//add placeholder to get the comma-and-space at the end
-					terms.push("");
-					this.value = terms.join(", ");
-					
-					//$('#team_ids').val($('#team_ids').val() + "," + ui.item.db);
-					return false;
-				}
-        });
+    $(id).bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+          event.preventDefault();
+        }
+      })
+      .autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          response( $.ui.autocomplete.filter(
+            data, extractLast( request.term ) ) );
+        },
+        focus: function() {
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          terms.pop();
+          terms.push( ui.item.value );
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+      });
 }
-
-var baseURL = 'http://37.230.100.79/dashb/api/';
-var userAPI = 'apis/userAPI';
 
 app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
     var table = '';
+    var baseURL = globalvars().baseURL;
     
     if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
             table.destroy();
@@ -53,7 +54,7 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
             table=$('#data-table').DataTable({
                     responsive: true
             });
-            console.info('Table initialized.');
+            /* console.info('Table initialized.'); */
             $('.preloader').hide(200);
             $('.show-btn').show();
         },100);
@@ -97,7 +98,7 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
                         table=$('#data-table').DataTable({
                                 responsive: true
                         });
-                        console.info('Table initialized.');
+                        /* console.info('Table initialized.'); */
                         $('.preloader').hide(200);
                         $('.show-btn').show();
                     },100);
@@ -119,10 +120,12 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
 
 app.controller('queryController', [ '$http', '$scope', function ($http, $scope) {
     var table = '';
+    var actions = '';
     $scope.creationMsg = '';
     $scope.querySavedMsg = '';
     $scope.showBtn = false;
     $scope.query = {};
+    var baseURL = globalvars().baseURL;
     
     // Get Area List
     $http.post(baseURL+'area_list',{hash: modhash})
@@ -138,8 +141,7 @@ app.controller('queryController', [ '$http', '$scope', function ($http, $scope) 
         
         $http.post(baseURL+'query_db',query).success(function(data){
             
-            if(data.code==0) alert(data.response);
-            else {
+            if(data.code==1) {
                 if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
                     table.destroy();
                 }
@@ -149,11 +151,12 @@ app.controller('queryController', [ '$http', '$scope', function ($http, $scope) 
                     table=$('#data-table').DataTable({
                             responsive: true
                     });
-                    console.info('Table initialized.');
+                    /* console.info('Table initialized.'); */
                     $('.preloader').hide(200);
                     $('.show-btn').show();
                 },100);
             }
+            else alert(data.response);
         });
     };
     
@@ -199,11 +202,31 @@ app.controller('queryController', [ '$http', '$scope', function ($http, $scope) 
     });
     $http.post(baseURL+'action_list',{hash: modhash, dbid: curdb}).success(function(data){
         $scope.actionList = data;
+        actions = data;
     });
     
     // Document ready
     $(document).ready(function(){
-        
+        $("#gerantid").keyup(function() {
+            if($("#gerantid").val().length>0) {
+                $("select[name='areaselector']").prop('disabled', true).val('');
+                $("input[name='starflow']").prop('disabled', true).val('');
+            }
+            else {
+                $("select[name='areaselector']").prop('disabled', false);
+                $("input[name='starflow']").prop('disabled', false);
+            }
+        });
+        $("input[name='starflow']").keyup(function() {
+            if($("input[name='starflow']").val().length>0) {
+                $("select[name='areaselector']").prop('disabled', true).val('');
+                $("#gerantid").prop('disabled', true).val('');
+            }
+            else {
+                $("select[name='areaselector']").prop('disabled', false);
+                $("#gerantid").prop('disabled', false);
+            }
+        });
     });
     
 }]);
@@ -213,6 +236,7 @@ app.controller('queryManageController', [ '$http', '$scope', function ($http, $s
     var querytable = '';
     $scope.creationMsg = '';
     $scope.query = {};
+    var baseURL = globalvars().baseURL;
     
     // Query list
     $http.post(baseURL+'user_query',{hash: modhash})
@@ -239,7 +263,7 @@ app.controller('queryManageController', [ '$http', '$scope', function ($http, $s
             table=$('#data-table').DataTable({
                     responsive: true
             });
-            console.info('Table initialized.');
+            /* console.info('Table initialized.'); */
             $('.preloader').hide(200);
             $('.show-btn').show();
         },100);
@@ -270,7 +294,7 @@ app.controller('queryManageController', [ '$http', '$scope', function ($http, $s
                     table=$('#data-table').DataTable({
                             responsive: true
                     });
-                    console.info('Table initialized.');
+                    /* console.info('Table initialized.'); */
                     $('.preloader').hide(200);
                     $('.show-btn').show();
                 },100);
@@ -301,7 +325,7 @@ app.controller('queryManageController', [ '$http', '$scope', function ($http, $s
                         table=$('#data-table').DataTable({
                                 responsive: true
                         });
-                        console.info('Table initialized.');
+                        /* console.info('Table initialized.'); */
                         $('.preloader').hide(200);
                         $('.show-btn').show();
                     },100);
@@ -346,6 +370,7 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
     var table = '';
     $scope.creationMsg = '';
     $scope.query = {};
+    var baseURL = globalvars().baseURL;
     
     $http.post(baseURL+'user_query_list',{hash: modhash})
             .success (function (response) {
@@ -365,7 +390,7 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
                 table=$('#data-table').DataTable({
                         responsive: true
                 });
-                console.info('Table initialized.');
+                /* console.info('Table initialized.'); */
                 $('.preloader').hide(200);
             },100);
         });

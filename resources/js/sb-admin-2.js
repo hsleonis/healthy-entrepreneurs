@@ -37,8 +37,8 @@ $(function() {
 
 $(function() {
     $(".date-picker").datepicker({
-      dateFormat: "yy-mm-dd"
-    });
+      dateFormat: "yy-mm-dd",
+    }).val(1);
     
     $('.tooltip').tooltipster();
     

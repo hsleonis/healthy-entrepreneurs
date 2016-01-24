@@ -1,10 +1,10 @@
 <thead>
     <tr>
-        <th ng-repeat="thead in json2.head">{{thead}}</th>
+        <th ng-repeat="thead in json2.head track by $index">{{thead}}</th>
     </tr>
 </thead>
 <tbody>
-    <tr ng-repeat="el in json2.item" class="{{el.class}}">
-        <td ng-repeat="p in el.data">{{p}}</td>
+    <tr ng-repeat="el in json2.item track by $index" class="{{el.class}}">
+        <td ng-repeat="p in el.data track by $index">{{p}}</td>
     </tr>
 </tbody>
