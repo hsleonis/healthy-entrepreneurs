@@ -120,6 +120,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                     <div class="form-group col-lg-6">
                                                         <label>Age</label>
                                                         <select class="form-control" ng-model="query.age" name="age">
+                                                    <option value=""></option>
                                                     <option value="Between 15 to 19">Between 15 to 19</option>
                                                     <option value="Younger than 10">Younger than 10</option>
                                                     <option value="Older than 24">Older than 24</option>
@@ -131,6 +132,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                     <div class="form-group col-lg-6">
                                                         <label>Gender</label>
                                                         <select class="form-control" ng-model="query.gender" name="gender">
+                                                            <option value=""></option>
                                                             <option value="male">Male</option>
                                                             <option value="female">Female</option>
                                                             <option value="other">Other</option>
@@ -139,6 +141,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                     <div class="form-group col-lg-6">
                                                         <label>Marital status</label>
                                                         <select class="form-control" ng-model="query.marital_status" name="marital_status">
+                                                            <option value=""></option>
                                                             <option value="Single">Single</option>
                                                             <option value="Partnered">Partnered</option>
                                                         </select>
@@ -146,6 +149,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                     <div class="form-group col-lg-6">
                                                         <label>Partner present</label>
                                                         <select class="form-control" ng-model="query.partnered" name="partnered">
+                                                            <option value=""></option>
                                                             <option value="yes">Yes</option>
                                                             <option value="no">No</option>
                                                         </select>
@@ -157,6 +161,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                     <div class="form-group col-lg-6">
                                                         <label>School going audience</label>
                                                         <select class="form-control" ng-model="query.schooling" name="schooling">
+                                                            <option value=""></option>
                                                             <option value="yes">Yes</option>
                                                             <option value="no">No</option>
                                                         </select>
@@ -164,6 +169,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                     <div class="form-group col-lg-6">
                                                         <label>Repeated audience</label><img src="resources/img/tooltip.png" class="tooltip" title="This refers if the flow was seen repeated time by the user(s) or by the tab audience or session. " />
                                                         <select class="form-control" ng-model="query.repeated" name="repeated">
+                                                            <option value=""></option>
                                                             <option value="yes">Yes</option>
                                                             <option value="no">No</option>
                                                         </select>
