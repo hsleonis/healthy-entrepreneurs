@@ -202,7 +202,10 @@ app.controller('queryController', [ '$http', '$scope', function ($http, $scope) 
     });
     $http.post(baseURL+'action_list',{hash: modhash, dbid: curdb}).success(function(data){
         $scope.actionList = data;
-        actions = data;
+        $("#reportaction").change(function() {
+            console.log($(this).find("option:selected").text());
+        });
+        
     });
     
     // Document ready

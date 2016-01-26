@@ -105,6 +105,11 @@ input.vanilla:focus,
     background: #4FA495;
 }
 
+.tooltip-div {
+    float: left;
+    margin-right: 10px;
+}
+
 img.tooltip {
     border-radius: 50%;
     height: 18px;
