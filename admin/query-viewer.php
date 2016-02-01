@@ -101,7 +101,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                         <div class="form-group col-sm-4">
                                             <label for="reportaction">Report Action *</label><img src="resources/img/tooltip.png" class="tooltip" title="Must Be Selected for any result. This is the main determiner of what report you are trying to bring. Selecting appropriate report action and giving parameter in at least necessary field is required. " />
                                             <select id="reportaction" class="form-control" ng-model="query.action" name="reportaction" required>
-                                                <option ng-repeat="item in actionList" value="{{item.id}}">{{item.name}}</option>
+                                                <option ng-repeat="item in actionList" data-index="{{$index}}" value="{{item.id}}">{{item.name}}</option>
                                             </select>
                                         </div><!-- Report action -->
                                         </div><!-- General selection -->

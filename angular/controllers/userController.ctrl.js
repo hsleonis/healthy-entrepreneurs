@@ -118,13 +118,21 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
     
 }]);
 
-app.controller('queryController', [ '$http', '$scope', function ($http, $scope) {
+app.controller('queryController', [ '$http', '$scope', function ($http, $scope, $compile) {
     var table = '';
     var actions = '';
     $scope.creationMsg = '';
     $scope.querySavedMsg = '';
     $scope.showBtn = false;
     $scope.query = {};
+    $scope.json = {
+            head: [
+                '', '', ''
+            ],
+            item: [{
+                    data: ['', '', '']
+            }]
+    };
     var baseURL = globalvars().baseURL;
     
     // Get Area List
@@ -136,27 +144,62 @@ app.controller('queryController', [ '$http', '$scope', function ($http, $scope) 
     // Create Query
     $scope.createQuery = function(query){
         $('.preloader').show(50);
+        $('.show-btn').hide();
         $scope.query.query = 'true'; // For testing DB Name
         $scope.query.dbid = curdb; // For testing DB ID
         
         $http.post(baseURL+'query_db',query).success(function(data){
-            
-            if(data.code==1) {
+            if(typeof data.code!=='undefined' && typeof data.data!=='undefined' && data.code==1) {
+                
                 if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
                     table.destroy();
                 }
                 
                 $scope.json = data.data;
-                setTimeout(function(){
-                    table=$('#data-table').DataTable({
-                            responsive: true
+                
+                // new code =======
+                var target = $('#data-table thead');
+                var target2 = $('#data-table tbody');
+                target.remove();
+                target2.remove();
+                target = target2 = $();
+                $http.post('templates/table.tpl.html').success(function(data){
+                   angular.element('#data-table').injector().invoke(function($compile) {
+                        var $scope = angular.element('#data-table').scope();
+                        $('#data-table').append($compile(data)($scope));
+                        angular.element('#data-table').ready(function(){
+                            setTimeout(function(){
+                                table=$('#data-table').DataTable({
+                                            responsive: true
+                                        });
+                                $('.preloader').hide(200);
+                                $('.show-btn').show();
+                            },100);
+                        });
                     });
-                    /* console.info('Table initialized.'); */
-                    $('.preloader').hide(200);
-                    $('.show-btn').show();
-                },100);
+                });
+                //$('.dataTable_wrapper').append($compile("<table id='data-table' ng-query-table />")($scope));
+                //$scope.$apply();
+                // new code =======
+                
+                /*angular.element('#data-table').ready(function(){
+                    var th = $('#data-table th').length;
+                    var tr = $('#data-table tr').length;
+                    if(th){
+                        var timer = data.data.item.length+100;
+                        setTimeout(function(){
+                            table=$('#data-table').DataTable({
+                                        responsive: true
+                                    });
+                            $('.preloader').hide(200);
+                            $('.show-btn').show();
+                        },timer);
+                    }
+                    else alert('Table headers empty!');
+                });*/
             }
-            else alert(data.response);
+            else if(typeof data.code!=='undefined') alert(data.response);
+            else alert('Response empty!');
         });
     };
     
@@ -203,7 +246,12 @@ app.controller('queryController', [ '$http', '$scope', function ($http, $scope) 
     $http.post(baseURL+'action_list',{hash: modhash, dbid: curdb}).success(function(data){
         $scope.actionList = data;
         $("#reportaction").change(function() {
-            console.log($(this).find("option:selected").text());
+            var action = $(this).find("option:selected").attr('data-index');
+            $('.required-option').prop("required", "false").removeClass('required-option');
+            if(typeof data[action]!=='undefined' && data[action].required.length)
+                for(var i=0;i<data[action].required.length;i++) {
+                    $('#'+data[action].required[i]).prop("required", "true").addClass('required-option');
+                }
         });
         
     });
