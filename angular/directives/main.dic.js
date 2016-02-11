@@ -75,6 +75,20 @@ app.directive('ngQuTable', function() {
     }
 });
 
+
+// Query list table
+app.directive('ngQlistTable', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            angular.element(element).ready(function() {
+                
+            });
+        },
+        templateUrl: 'templates/querylist-table.tpl.html'
+    }
+});
+
 app.directive('ngLogout', function() {
     return{
         restrict: 'A',

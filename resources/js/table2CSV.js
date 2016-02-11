@@ -19,8 +19,11 @@ jQuery.fn.table2CSV = function(options) {
             tmpRow[tmpRow.length] = formatData(options.header[i]);
         }
     } else {
-        $(el).filter(':visible').find('th').each(function() {
-            if ($(this).css('display') != 'none') tmpRow[tmpRow.length] = formatData($(this).html());
+        $(el)
+//            .filter(':visible')
+            .find('th').each(function() {
+            //if ($(this).css('display') != 'none') 
+                tmpRow[tmpRow.length] = formatData($(this).html());
         });
     }
 
@@ -29,8 +32,11 @@ jQuery.fn.table2CSV = function(options) {
     // actual data
     $(el).find('tr').each(function() {
         var tmpRow = [];
-        $(this).filter(':visible').find('td').each(function() {
-            if ($(this).css('display') != 'none') tmpRow[tmpRow.length] = formatData($(this).html());
+        $(this)
+            /*.filter(':visible')*/
+            .find('td').each(function() {
+            //if ($(this).css('display') != 'none') 
+                tmpRow[tmpRow.length] = formatData($(this).html());
         });
         row2CSV(tmpRow);
     });

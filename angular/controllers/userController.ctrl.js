@@ -210,8 +210,8 @@ app.controller('queryController', [ '$http', '$scope', function ($http, $scope, 
             $scope.query.query = 'save';
             $scope.query.title = title;
             $http.post(baseURL+'query_db',$scope.query).success(function(data){
-                $scope.querySavedMsg = data.message;
-                alert(data.message);
+                $scope.querySavedMsg = data.response;
+                alert(data.response);
             });
         }
     };
@@ -350,6 +350,7 @@ app.controller('queryManageController', [ '$http', '$scope', function ($http, $s
                     $('.show-btn').show();
                 },100);
             });
+            alert(data.response);
         });
     };
     
@@ -380,6 +381,7 @@ app.controller('queryManageController', [ '$http', '$scope', function ($http, $s
                         $('.preloader').hide(200);
                         $('.show-btn').show();
                     },100);
+                    alert(data.response);
                 });
             });
         }
@@ -411,6 +413,7 @@ app.controller('queryManageController', [ '$http', '$scope', function ($http, $s
                         $('.show-btn').show();
                     },100);
                 });
+                alert(data.response);
             });
         }
     };
@@ -421,30 +424,78 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
     var table = '';
     $scope.creationMsg = '';
     $scope.query = {};
+    $scope.json = {
+            head: [
+                '', '', ''
+            ],
+            item: [{
+                    data: ['', '', '']
+            }]
+    };
+    $scope.user_date = false;
+    $scope.user_stratify = false;
+    $scope.curId = '';
     var baseURL = globalvars().baseURL;
     
-    $http.post(baseURL+'user_query_list',{hash: modhash})
+    $http.post(baseURL+'user_query',{hash: modhash})
             .success (function (response) {
             $scope.reports = response.data.item;
-            console.log(response.data.item);
     });
     
     $scope.showReport = function(id){
         $('.preloader').show(50);
-        if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
-            table.destroy();
-        }
-        
-        $http.post(baseURL+'query_db',{queryid:id,dbid: curdb, query:'true'}).success(function(data){
-            $scope.json = data.data;
-            setTimeout(function(){
-                table=$('#data-table').DataTable({
-                        responsive: true
+        $('.show-btn').hide();
+        $scope.query.query = 'true'; // For testing DB Name
+        $scope.query.dbid = curdb; // For testing DB ID
+        $scope.query.queryid = id | $scope.curId;
+        // {queryid:id,dbid: curdb,query:'true'}
+        $http.post(baseURL+'query_db',$scope.query).success(function(data){
+            if(typeof data.code!=='undefined' && typeof data.data!=='undefined' && data.code==1) {
+                
+                if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
+                    table.destroy();
+                }
+                
+                $scope.json = data.data;
+
+                var target = $('#data-table thead');
+                var target2 = $('#data-table tbody');
+                target.remove();
+                target2.remove();
+                target = target2 = $();
+                $http.post('templates/table.tpl.html').success(function(data){
+                   angular.element('#data-table').injector().invoke(function($compile) {
+                        var $scope = angular.element('#data-table').scope();
+                        $('#data-table').append($compile(data)($scope));
+                        angular.element('#data-table').ready(function(){
+                            setTimeout(function(){
+                                table=$('#data-table').DataTable({
+                                            responsive: true
+                                        });
+                                $('.preloader').hide(200);
+                                $('.show-btn').show();
+                            },100);
+                        });
+                    });
                 });
-                /* console.info('Table initialized.'); */
-                $('.preloader').hide(200);
-            },100);
+            }
+            else if(typeof data.code!=='undefined') alert(data.response);
+            else alert('Response empty!');
         });
+    };
+    
+    $scope.getReport = function(id, param) {
+        $scope.query.query = 'true'; // For testing DB Name
+        $scope.query.dbid = curdb; // For testing DB ID
+        $scope.query.id = $scope.curId = id;
+        
+        if(param.user_date || param.user_stratify) {
+            $scope.user_date = param.user_date;
+            $scope.user_stratify = param.user_stratify;
+        }
+        else {
+            $scope.showReport(id);
+        }
     };
 }]);
 

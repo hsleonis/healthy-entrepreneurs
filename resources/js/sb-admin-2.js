@@ -51,13 +51,13 @@ $(function() {
 		if( scroll >= height ) {
 			$('.main-logo').addClass("navbar-fixed-top").delay( 500 ).fadeIn();
 		}
-		else {
+		else if(scroll == 0) {
 			$('.main-logo').removeClass("navbar-fixed-top");
 		}
     });
 });
 
 function getCSVData(){
- var csv_value=$('#data-table').table2CSV({delivery:'value'});
- $("#csv_text").val(csv_value);	
+    var csv_value=$('#csv-table').table2CSV({delivery:'value'});
+    $("#csv_text").val(csv_value);
 }

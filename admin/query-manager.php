@@ -71,7 +71,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                 <div class="preload-img"><img src="resources/img/loader.gif" /></div>
                             </div>
                             <div class="dataTable_wrapper">
-                                <table id="query-table" class="table table-striped table-bordered table-hover" ng-qu-table></table>
+                                <table id="query-table" class="table table-striped table-bordered table-hover" ng-qlist-table></table>
                             </div>
                             <!-- /.table-responsive -->
                             <!-- /Data Table -->

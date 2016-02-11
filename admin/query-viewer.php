@@ -70,6 +70,10 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                 <option ng-repeat="item in actionList" value="{{item.id}}">{{item.name}}</option>
                                             </select>
                                         </div><!-- Report action -->
+                                        <div class="form-group col-lg-6">
+                                            <label>Make available to user</label>
+                                            <input type="checkbox" ng-model="query.date_user" name="date_user" />
+                                        </div><!-- Date to user -->
                                         </div><!-- General selection -->
                                         
                                         <div class="input-group col-sm-12">
@@ -104,6 +108,10 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                 <option ng-repeat="item in actionList" data-index="{{$index}}" value="{{item.id}}">{{item.name}}</option>
                                             </select>
                                         </div><!-- Report action -->
+                                        <div class="form-group col-lg-12">
+                                            <label>Make available to user</label>
+                                            <input type="checkbox" ng-model="query.date_user" name="date_user" />
+                                        </div><!-- Date to user -->
                                         </div><!-- General selection -->
                                     
                                         <!-- accordian -->
@@ -117,6 +125,10 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                             </a>
                                             <div id="collapse1" class="panel-collapse collapse">
                                                 <div class="panel-body">
+                                                    <div class="form-group col-lg-12">
+                                                        <label>Make available to user</label>
+                                                        <input type="checkbox" ng-model="query.stratify_user" name="stratify_user" />
+                                                    </div><!-- Avial to user -->
                                                     <div class="form-group col-lg-6">
                                                         <label>Age</label>
                                                         <select class="form-control" ng-model="query.age" name="age">
@@ -126,6 +138,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                     <option value="Older than 24">Older than 24</option>
                                                     <option value="Between 20 to 24">Between 20 to 24</option>
                                                     <option value="Between 10 to 14">Between 10 to 14</option>
+                                                    <option value="all">All</option>
                                                             
                                                         </select>
                                                     </div><!-- age -->
@@ -136,6 +149,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                             <option value="male">Male</option>
                                                             <option value="female">Female</option>
                                                             <option value="other">Other</option>
+                                                            <option value="all">All</option>
                                                         </select>
                                                     </div><!-- gender -->
                                                     <div class="form-group col-lg-6">
@@ -144,6 +158,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                             <option value=""></option>
                                                             <option value="Single">Single</option>
                                                             <option value="Partnered">Partnered</option>
+                                                            <option value="all">All</option>
                                                         </select>
                                                     </div><!-- marital -->
                                                     <div class="form-group col-lg-6">
@@ -152,18 +167,20 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                             <option value=""></option>
                                                             <option value="yes">Yes</option>
                                                             <option value="no">No</option>
+                                                            <option value="all">All</option>
                                                         </select>
                                                     </div><!--partnered -->
-                                                    <div class="form-group col-lg-6">
+                                                    <!--<div class="form-group col-lg-6">
                                                         <label>No of audience</label><img src="resources/img/tooltip.png" class="tooltip" title="This refers to No. of people attended a session. you can use this to query How many people saw a flow / video together in a tab / session at the same time. " />
                                                         <input type="number" min="0" class="form-control" placeholder="No of audience" ng-model="query.no_of_audience" name="no_of_audience" value="">
-                                                    </div><!-- audience -->
+                                                    </div>--><!-- audience -->
                                                     <div class="form-group col-lg-6">
                                                         <label>School going audience</label>
                                                         <select class="form-control" ng-model="query.schooling" name="schooling">
                                                             <option value=""></option>
                                                             <option value="yes">Yes</option>
                                                             <option value="no">No</option>
+                                                            <option value="all">All</option>
                                                         </select>
                                                     </div><!--schooling -->
                                                     <div class="form-group col-lg-6">
@@ -172,6 +189,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                             <option value=""></option>
                                                             <option value="yes">Yes</option>
                                                             <option value="no">No</option>
+                                                            <option value="all">All</option>
                                                         </select>
                                                     </div><!-- repeated -->
                                                 </div>
@@ -188,7 +206,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                                 <div class="panel-body">
                                                     <div class="form-group col-lg-6">
                                                         <label>Alternate ID</label>
-                                                        <input id="alternateid" class="form-control" placeholder="Flow ID" ng-model="query.alternateid" name="alternateid" value="">
+                                                        <input id="alternateid" class="form-control" placeholder="Alternate ID" ng-model="query.alternateid" name="alternateid" value="">
 </div><!-- alternate -->
                                                 </div>
                                             </div>
@@ -289,6 +307,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            <table id="csv-table" style="display:none;" ng-query-table></table>
         </div>
         <!-- /#page-wrapper -->
 <?php endif;
