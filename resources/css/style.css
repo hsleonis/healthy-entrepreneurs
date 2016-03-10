@@ -91,7 +91,6 @@ input.vanilla:focus,
 .ui-autocomplete-multiselect.ui-state-active {
   outline: none;
   border: 1px solid #7ea4c7;
-  -khtml-box-shadow: 0 0 5px rgba(50, 150, 255, 0.5);
   box-shadow: 0 0 5px rgba(50, 150, 255, 0.5);
 }
 
@@ -129,6 +128,7 @@ img.tooltip {
     border: 2px groove rgba(0,0,0,0.1);
 }
 
+input.ng-invalid-required,
 select.ng-invalid-required {
     border: 1px solid #E00000;
 }

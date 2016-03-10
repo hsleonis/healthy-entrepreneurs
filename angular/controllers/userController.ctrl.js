@@ -39,6 +39,9 @@ function leoAuto(id,data) {
         }
       });
 }
+function scrollToElement(ele) {
+    $(window).scrollTop(ele.offset().top).scrollLeft(ele.offset().left);
+}
 
 app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
     var table = '';
@@ -170,10 +173,16 @@ app.controller('queryController', [ '$http', '$scope', function ($http, $scope, 
                         angular.element('#data-table').ready(function(){
                             setTimeout(function(){
                                 table=$('#data-table').DataTable({
-                                            responsive: true
+                                            responsive: true,
+                                            aLengthMenu: [
+                                                [25, 50, 100, 200, -1],
+                                                [25, 50, 100, 200, "All"]
+                                            ],
+                                            iDisplayLength: 50
                                         });
                                 $('.preloader').hide(200);
                                 $('.show-btn').show();
+                                scrollToElement($('table'));
                             },100);
                         });
                     });
@@ -290,7 +299,7 @@ app.controller('queryManageController', [ '$http', '$scope', function ($http, $s
     var baseURL = globalvars().baseURL;
     
     // Query list
-    $http.post(baseURL+'user_query',{hash: modhash})
+    $http.post(baseURL+'user_query',{hash: modhash, dbid: curdb })
             .success (function (response) {
             $scope.queryList = response.data.item;
         
@@ -402,7 +411,7 @@ app.controller('queryManageController', [ '$http', '$scope', function ($http, $s
            $http.post(baseURL+'remove_query',aquery).success(function(data){
                 $scope.creationMsg = data.response;
 
-                $http.post(baseURL+'user_query',{hash: modhash})
+                $http.post(baseURL+'user_query',{hash: modhash, dbid: curdb})
                 .success (function (response) {
                     $scope.json2 = response.data;
                     setTimeout(function(){
@@ -437,7 +446,7 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
     $scope.curId = '';
     var baseURL = globalvars().baseURL;
     
-    $http.post(baseURL+'user_query',{hash: modhash})
+    $http.post(baseURL+'user_query',{hash: modhash, dbid: curdb})
             .success (function (response) {
             $scope.reports = response.data.item;
     });
@@ -474,6 +483,7 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
                                         });
                                 $('.preloader').hide(200);
                                 $('.show-btn').show();
+                                scrollToElement($('table'));
                             },100);
                         });
                     });
@@ -489,11 +499,10 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
         $scope.query.dbid = curdb; // For testing DB ID
         $scope.query.id = $scope.curId = id;
         
-        if(param.user_date || param.user_stratify) {
-            $scope.user_date = param.user_date;
-            $scope.user_stratify = param.user_stratify;
-        }
-        else {
+        $scope.user_date = param.user_date;
+        $scope.user_stratify = param.user_stratify;
+        
+        if(!param.user_date && !param.user_stratify) {
             $scope.showReport(id);
         }
     };

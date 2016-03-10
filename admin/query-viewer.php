@@ -54,11 +54,11 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                         <div class="input-group col-sm-12">
                                         <div class="form-group col-sm-4">
                                             <label>Start date</label><img src="resources/img/tooltip.png" class="tooltip" title="The Date from when you want to include in Report. " />
-                                            <input class="form-control date-picker" type="text" placeholder="Start date" ng-model="query.start_date" name="startdate">
+                                            <input class="form-control date-picker" type="text" placeholder="Start date" ng-model="query.start_date" name="startdate" required>
                                         </div><!-- start date -->
                                         <div class="form-group col-sm-4">
                                             <label>End date</label><img src="resources/img/tooltip.png" class="tooltip" title="The Date till when you want to include in Report. " />
-                                            <input class="form-control date-picker" type="text" placeholder="End date" ng-model="query.end_date" name="enddate">
+                                            <input class="form-control date-picker" type="text" placeholder="End date" ng-model="query.end_date" name="enddate" required>
                                         </div><!-- end date -->
                                         
                                             
