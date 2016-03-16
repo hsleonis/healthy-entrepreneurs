@@ -73,13 +73,11 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
         $http.post(baseURL+'add_user',JSON.stringify($scope.user))
             .success (function (response) {
             $scope.creationMsg = response.response;
-            //console.log(response);
         });
 	 };
     
     $scope.edUser = function (p) {
         $scope.ed = p;
-        console.log(p);
         $('#edit-user-modal').modal('show');
     };
     
@@ -110,12 +108,16 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
         }
     };
     
-    $scope.upUser = function (p) {
+    $scope.upUser = function (p,q) {
+        p.id = q[0];
+        if(typeof p.name=='undefined') p.name = q[1];
+        if(typeof p.username=='undefined') p.username = q[2];
+        if(typeof p.areacode=='undefined') p.areacode = q[3];
+        if(typeof p.usertype=='undefined') p.usertype = q[4];
         console.log(p);
-        $http.post(userAPI,p)
+        $http.post(baseURL+'edit_user',{'id':p.id,'name':p.name,'username':p.username,'password':p.password,'areacode':p.areacode,'usertype':p.usertype})
             .success (function (response) {
             $('#edit-user-modal').modal('hide');
-            console.log('Data saved!');
         });
     };
     

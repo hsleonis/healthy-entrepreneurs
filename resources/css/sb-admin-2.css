@@ -23,6 +23,7 @@ body {
     border: 1px solid rgba(0,0,0,0.3);
     float: left;
     margin-right: 10px;
+    margin-bottom: 10px;
     padding-top: 55px;
 }
 
@@ -43,6 +44,15 @@ body {
         margin: 0 0 0 250px;
         padding: 0 30px;
         border-left: 1px solid #e7e7e7;
+    }
+}
+
+@media(max-width:767px){
+    .bottom-logo{
+        display: none;
+    }
+    .navbar-top-links {
+        float: right;
     }
 }
 

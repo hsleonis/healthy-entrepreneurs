@@ -32,7 +32,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                         {{creationMsg}}
                                     </div>
                                     <form role="form" name="regForm" id="regForm">
-                                        <div class="input-group col-sm-12">
+                                        <div class="input-group col-xs-12">
                                             <div class="form-group col-lg-6">
                                             <label>Gerant ID</label><img src="resources/img/tooltip.png" class="tooltip" title="ID / Username of gerant you want to be selected for the query. Can be multiple if given comma separated values. i.e. 1000,1002, Giving this value means any other gerant selection value (Gerant Area, Gerant ID Pattern will be ignored for the query) " />
                                             <input id="gerantid" class="form-control" placeholder="Gerant ID" ng-model="query.gerantid" name="gerantid" value="">
@@ -51,7 +51,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                             <input class="form-control" name="starflow" placeholder="Gerant ID pattern matching" ng-model="query.gerant_pattern">
                                         </div><!-- gerant id pattern -->
                                         </div><!-- Gerant selection -->
-                                        <div class="input-group col-sm-12">
+                                        <div class="input-group col-xs-12">
                                         <div class="form-group col-sm-4">
                                             <label>Start date</label><img src="resources/img/tooltip.png" class="tooltip" title="The Date from when you want to include in Report. " />
                                             <input class="form-control date-picker" type="text" placeholder="Start date" ng-model="query.start_date" name="startdate" required>
@@ -288,7 +288,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                     <button class="btn btn-default" data-ng-click="saveQuery()">Save Query</button><img src="resources/img/tooltip.png" class="tooltip" title="Saves the current query which is showing result in table now. Saving the query allows you to assing the query to users. " />
                                     </div>
                                     <div class="tooltip-div">
-                                    <a href="page/assign-query"><button class="btn btn-default">Assign To</button></a><img src="resources/img/tooltip.png" class="tooltip" title="Assigns current / saved query to chosen user(s)" />
+                                    <a href="page/query-manager"><button class="btn btn-default">Assign To</button></a><img src="resources/img/tooltip.png" class="tooltip" title="Assigns current / saved query to chosen user(s)" />
                                     </div>
                                     <form class="csvbtn tooltip-div" action="getCSV.php" method="post" target="_blank"> 
                                         <input type="hidden" name="csv_text" id="csv_text" />
