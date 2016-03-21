@@ -26,7 +26,7 @@
                                     <div class="alert alert-success" ng-show="creationMsg">
                                         {{creationMsg}}
                                     </div>
-                                    <form role="form" name="regForm">
+                                    <form id="user-create-form" role="form" name="regForm">
                                         <div class="form-group col-lg-6">
                                             <label>Name</label>
                                             <input class="form-control" placeholder="Username" ng-model="user.name">
@@ -49,7 +49,7 @@
                                         <div class="form-group col-lg-6">
                                             <label>User Type</label>
                                             <select class="form-control" ng-model="user.usertype">
-                                                <option value="1">Admin</option>
+                                                <option value="1" ng-selected="true">Admin</option>
                                                 <option value="0">Regular User</option>
                                             </select>
                                         </div>
@@ -101,7 +101,7 @@
                                     <div class="alert alert-success" ng-show="creationMsg">
                                         {{updateMsg}}
                                     </div>
-                                    <form role="form" name="regForm">
+                                    <form id="user-update-form" role="form" name="regForm">
                                         <div class="form-group col-lg-6">
                                             <label>Name</label>
                                             <input class="form-control" placeholder="Username" ng-model="eduser.name" ng-value="ed[1]">
@@ -124,8 +124,8 @@
                                         <div class="form-group col-lg-6">
                                             <label>User Type</label>
                                             <select class="form-control" ng-model="eduser.usertype">
-                                                <option ng-selected="ed[4]=='Admin'" value="1">Admin</option>
-                                                <option ng-selected="ed[4]=='User'" value="0">Regular User</option>
+                                                <option ng-selected="ed[4]==1" ng-value="1">Admin</option>
+                                                <option ng-selected="ed[4]==0" ng-value="0">Regular User</option>
                                             </select>
                                         </div>
                                     </form>

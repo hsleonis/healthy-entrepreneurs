@@ -70,14 +70,27 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
         });
     
     $scope.createUser = function () {
+        $('.preloader').show(50);
         $http.post(baseURL+'add_user',JSON.stringify($scope.user))
             .success (function (response) {
             $scope.creationMsg = response.response;
+            $http.post(baseURL+'user_list',{hash: modhash}).success(function(data) {
+                $scope.json = data.data;
+                if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
+                    table.destroy();
+                }
+                table=$('#data-table').DataTable({
+                    responsive: true
+                });
+                $('#user-create-form')[0].reset();
+            });
+            $('.preloader').hide(200);
         });
 	 };
     
     $scope.edUser = function (p) {
         $scope.ed = p;
+        $scope.ed[4]=($scope.ed[4]=='Admin')?'1':'0';
         $('#edit-user-modal').modal('show');
     };
     
@@ -109,15 +122,27 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
     };
     
     $scope.upUser = function (p,q) {
-        p.id = q[0];
-        if(typeof p.name=='undefined') p.name = q[1];
-        if(typeof p.username=='undefined') p.username = q[2];
-        if(typeof p.areacode=='undefined') p.areacode = q[3];
-        if(typeof p.usertype=='undefined') p.usertype = q[4];
-        console.log(p);
+        $('.preloader').show(50);
+            if(typeof p=='undefined') p = {};
+            if(typeof p.id=='undefined') p.id = q[0];
+            if(typeof p.name=='undefined') p.name = q[1];
+            if(typeof p.username=='undefined') p.username = q[2];
+            if(typeof p.areacode=='undefined') p.areacode = q[3];
+            if(typeof p.usertype=='undefined') p.usertype = q[4];
         $http.post(baseURL+'edit_user',{'id':p.id,'name':p.name,'username':p.username,'password':p.password,'areacode':p.areacode,'usertype':p.usertype})
             .success (function (response) {
             $('#edit-user-modal').modal('hide');
+            $http.post(baseURL+'user_list',{hash: modhash}).success(function(data) {
+                $scope.json = data.data;
+                if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
+                    table.destroy();
+                }
+                table=$('#data-table').DataTable({
+                    responsive: true
+                });
+                $('#user-update-form')[0].reset();
+            });
+            $('.preloader').hide(200);
         });
     };
     

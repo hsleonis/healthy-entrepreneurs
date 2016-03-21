@@ -29,6 +29,15 @@
     margin-left: 0;
 }
 
+.form-control,
+.modal-content{
+    border-radius: 2px;
+}
+
+.modal-header{
+    background-color: #50B2EA;
+}
+
 .login-page-header {
     padding-bottom: 9px;
     margin: 40px 0px 20px;
