@@ -41,10 +41,11 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Area</label>
-                                            <select class="form-control" ng-model="user.areacode">
+                                            <input id="areaselector" class="form-control" ng-model="user.areacode" name="areaselector" placeholder="Area" />
+                                            <!--<select class="form-control" ng-model="user.areacode">
                                                 <option value=""></option>
                                                 <option ng-repeat="item in areaList" value="{{item.id}}">{{item.name}}</option>
-                                            </select>
+                                            </select>-->
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>User Type</label>
@@ -116,10 +117,11 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Area</label>
-                                            <select class="form-control" ng-model="eduser.areacode">
+                                            <input id="areaselector2" class="form-control" ng-model="eduser.areacode" name="areaselector" placeholder="Area" ng-value="ed[3]" />
+                                            <!--<select class="form-control" ng-model="eduser.areacode">
                                                 <option value=""></option>
                                                 <option ng-repeat="item in areaList" ng-selected="item.id==ed[3]" value="{{item.id}}">{{item.name}}</option>
-                                            </select>
+                                            </select>-->
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>User Type</label>

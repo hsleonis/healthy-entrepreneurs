@@ -66,7 +66,9 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
     
     $http.post(baseURL+'area_list',{hash: modhash})
             .success (function (response) {
-            $scope.areaList = response.data;
+            leoAuto('#areaselector',response.data);
+            leoAuto('#areaselector2',response.data);
+            //$scope.areaList = response.data;
         });
     
     $scope.createUser = function () {
@@ -149,6 +151,7 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
 }]);
 
 app.controller('queryController', [ '$http', '$scope', function ($http, $scope, $compile) {
+    $('.preloader').hide(200);
     var table = '';
     var actions = '';
     $scope.creationMsg = '';
@@ -168,7 +171,8 @@ app.controller('queryController', [ '$http', '$scope', function ($http, $scope, 
     // Get Area List
     $http.post(baseURL+'area_list',{hash: modhash})
             .success (function (response) {
-            $scope.areaList = response.data;
+            leoAuto('#areaselector',response.data);
+            //$scope.areaList = response.data;
     });
     
     // Create Query
