@@ -26,18 +26,18 @@
                                     <div class="alert alert-success" ng-show="creationMsg">
                                         {{creationMsg}}
                                     </div>
-                                    <form id="user-create-form" role="form" name="regForm">
+                                    <form id="regForm" role="form" name="regForm">
                                         <div class="form-group col-lg-6">
                                             <label>Name</label>
                                             <input class="form-control" placeholder="Username" ng-model="user.name">
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Email</label>
-                                            <input class="form-control" placeholder="Email" ng-model="user.username">
+                                            <input class="form-control" placeholder="Email" ng-model="user.username" required>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Password</label>
-                                            <input class="form-control" placeholder="Password" type="password" ng-model="user.password">
+                                            <input class="form-control" placeholder="Password" type="password" ng-model="user.password" required>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Area</label>
@@ -55,7 +55,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <button type="button" ng-click="createUser()" class="btn btn-default">Create User</button>
+                                            <button type="button" ng-click="regForm.$valid && createUser()" class="btn btn-default">Create User</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
                                         </div>
                                     </form>
@@ -102,14 +102,14 @@
                                     <div class="alert alert-success" ng-show="creationMsg">
                                         {{updateMsg}}
                                     </div>
-                                    <form id="user-update-form" role="form" name="regForm">
+                                    <form id="edForm" role="form" name="edForm">
                                         <div class="form-group col-lg-6">
                                             <label>Name</label>
                                             <input class="form-control" placeholder="Username" ng-model="eduser.name" ng-value="ed[1]">
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Email</label>
-                                            <input class="form-control" placeholder="Email" ng-model="eduser.username" ng-value="ed[2]">
+                                            <input class="form-control" placeholder="Email" ng-model="eduser.username" ng-value="ed[2]" required>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Password</label>
@@ -117,7 +117,7 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Area</label>
-                                            <input id="areaselector2" class="form-control" ng-model="eduser.areacode" name="areaselector" placeholder="Area" ng-value="ed[3]" />
+                                            <input id="areaselector2" class="form-control" ng-model="eduser.areacode" name="areaselector" placeholder="Area" value="{{ed[3]}}" />
                                             <!--<select class="form-control" ng-model="eduser.areacode">
                                                 <option value=""></option>
                                                 <option ng-repeat="item in areaList" ng-selected="item.id==ed[3]" value="{{item.id}}">{{item.name}}</option>
@@ -126,8 +126,8 @@
                                         <div class="form-group col-lg-6">
                                             <label>User Type</label>
                                             <select class="form-control" ng-model="eduser.usertype">
-                                                <option ng-selected="ed[4]==1" ng-value="1">Admin</option>
-                                                <option ng-selected="ed[4]==0" ng-value="0">Regular User</option>
+                                                <option ng-selected="ed[4]=='Admin'" ng-value="1">Admin</option>
+                                                <option ng-selected="ed[4]=='User'" ng-value="0">Regular User</option>
                                             </select>
                                         </div>
                                     </form>
@@ -138,7 +138,7 @@
                         </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="upUser(eduser, ed)">Save changes</button>
+                    <button type="button" class="btn btn-primary" ng-click="edForm.$valid && upUser(eduser, ed)">Save changes</button>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->

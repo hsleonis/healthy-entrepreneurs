@@ -1,7 +1,30 @@
 Options -MultiViews
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^apis/([A-Za-z0-9-]+)/?$ api/index.php?page=$1 [NC]
-RewriteRule ^page/([A-Za-z0-9-]+)/?$ index.php?page=$1 [NC]
-RewriteRule ^([^\.]+)$ $1.php [NC]
+
+<ifModule mod_deflate.c>  
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/css text/javascript application/javascript application/x-javascript  
+</ifModule>
+
+Header unset ETag
+FileETag None
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^apis/([A-Za-z0-9-]+)/?$ api/index.php?page=$1 [NC]
+    RewriteRule ^page/([A-Za-z0-9-]+)/?$ index.php?page=$1 [NC]
+    RewriteRule ^([^\.]+)$ $1.php [NC]
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 10 days"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType text/plain "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType application/x-icon "access plus 1 year"
+</IfModule>
