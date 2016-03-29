@@ -47,7 +47,6 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
     var table = '';
     var baseURL = globalvars().baseURL;
     $scope.user = {};
-    $scope.user.usertype = "1";
     
     if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
             table.destroy();
@@ -94,6 +93,7 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
 	 };
     
     $scope.edUser = function (p) {
+        $scope.ed = {};
         $scope.ed = p;
         //$scope.ed[4]=($scope.ed[4]=='Admin')?'1':'0';
         $('#edit-user-modal').modal('show');
@@ -132,8 +132,8 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
             if(typeof p.id=='undefined') p.id = q[0];
             if(typeof p.name=='undefined') p.name = q[1];
             if(typeof p.username=='undefined') p.username = q[2];
-            if(typeof p.areacode=='undefined') p.areacode = q[3];
-            if(typeof p.usertype=='undefined') p.usertype = (q[4]=='Admin')?'1':'0';
+            if(typeof p.areacode=='undefined') p.areacode = $('#areaselector2').val();
+            if(typeof p.usertype=='undefined') p.usertype = (q[4]=='Admin')?'0':'1';
         $http.post(baseURL+'edit_user',{'id':p.id,'name':p.name,'username':p.username,'password':p.password,'areacode':p.areacode,'usertype':p.usertype})
             .success (function (response) {
             $('#edit-user-modal').modal('hide');
@@ -145,11 +145,17 @@ app.controller('userController', [ '$http', '$scope', function ($http, $scope) {
                 table=$('#data-table').DataTable({
                     responsive: true
                 });
+                if(typeof $('#user-update-form')[0]!=='undefined')
                 $('#user-update-form')[0].reset();
             });
             $('.preloader').hide(200);
         });
     };
+    
+    $('#edit-user-modal').on('hidden.bs.modal', function () {
+        if(typeof $('#edForm')[0]!=='undefined')
+        $('#edForm')[0].reset();
+    });
     
 }]);
 
@@ -536,7 +542,7 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
         $scope.user_date = param.user_date;
         $scope.user_stratify = param.user_stratify;
         
-        if(!param.user_date && !param.user_stratify) {
+        if(!param.user_date && !param.user_stratify && !param.gerant_user) {
             $scope.showReport(id);
         }
     };

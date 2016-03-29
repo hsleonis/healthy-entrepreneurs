@@ -40,7 +40,7 @@ echo "<script>var a=confirm('Please select a database first.'); if(typeof a!=='u
                         </div>
                         <!-- /.panel-body -->
                     </div>
-                    <div class="panel panel-default" ng-show="user_date || user_stratify">
+                    <div class="panel panel-default" ng-show="user_date || user_stratify || gerant_user">
                         <div class="panel-heading">
                             Report variables
                         </div>

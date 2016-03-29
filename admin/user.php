@@ -50,8 +50,8 @@
                                         <div class="form-group col-lg-6">
                                             <label>User Type</label>
                                             <select class="form-control" ng-model="user.usertype">
-                                                <option value="1" ng-selected="true">Admin</option>
-                                                <option value="0">Regular User</option>
+                                                <option ng-value="0" ng-selected="true">Admin</option>
+                                                <option ng-value="1">User</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-6">
@@ -117,7 +117,7 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Area</label>
-                                            <input id="areaselector2" class="form-control" ng-model="eduser.areacode" name="areaselector" placeholder="Area" value="{{ed[3]}}" />
+                                            <input id="areaselector2" class="form-control" ng-model="eduser.areacode" name="areaselector" placeholder="Area" ng-value="ed[3]" />
                                             <!--<select class="form-control" ng-model="eduser.areacode">
                                                 <option value=""></option>
                                                 <option ng-repeat="item in areaList" ng-selected="item.id==ed[3]" value="{{item.id}}">{{item.name}}</option>
@@ -126,8 +126,8 @@
                                         <div class="form-group col-lg-6">
                                             <label>User Type</label>
                                             <select class="form-control" ng-model="eduser.usertype">
-                                                <option ng-selected="ed[4]=='Admin'" ng-value="1">Admin</option>
-                                                <option ng-selected="ed[4]=='User'" ng-value="0">Regular User</option>
+                                                <option ng-selected="ed[4]=='Admin'" ng-value="0">Admin</option>
+                                                <option ng-selected="ed[4]=='User'" ng-value="1">User</option>
                                             </select>
                                         </div>
                                     </form>

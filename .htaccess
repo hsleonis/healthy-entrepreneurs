@@ -14,6 +14,9 @@ FileETag None
     RewriteRule ^apis/([A-Za-z0-9-]+)/?$ api/index.php?page=$1 [NC]
     RewriteRule ^page/([A-Za-z0-9-]+)/?$ index.php?page=$1 [NC]
     RewriteRule ^([^\.]+)$ $1.php [NC]
+    
+#    RewriteCond %{HTTP_HOST} ^www\.(.+) [NC]
+#    RewriteRule ^(.*) http://%1/$1 [R=301,NE,L]
 </IfModule>
 
 <IfModule mod_expires.c>
