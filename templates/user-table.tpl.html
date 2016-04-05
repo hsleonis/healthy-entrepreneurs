@@ -8,9 +8,11 @@
     <tr ng-repeat="el in json.item track by $index" class="{{el.class}}">
         <td ng-repeat="p in el.data track by $index">{{p}}</td>
         <td>
-            <span class="rm-user" ng-click="rmUser(el.data)"><i class="fa fa-trash"></i>
+            <span title="Remove user" class="rm-user" ng-click="rmUser(el.data)"><i class="fa fa-trash"></i>
 </span>
-            <span class="ed-user" ng-click="edUser(el.data)"><i class="fa fa-pencil-square-o"></i></span>
+            <span title="Edit user" class="ed-user" ng-click="edUser(el.data)"><i class="fa fa-pencil-square-o"></i></span>
+            
+            <!--<span title="Set pattern" class="pt-user" ng-click="ptUser(el.data)"><i class="fa fa-sheqel"></i></span>-->
         </td>
     </tr>
 </tbody>

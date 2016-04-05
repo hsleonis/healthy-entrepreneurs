@@ -42,9 +42,13 @@ img {
     margin-bottom: 10px;
     padding-top: 55px
 }
-.dbname:hover {
+.dbname:hover,
+.active-db {
     background: #2c5889;
     color: #EEE
+}
+.report-item{
+    cursor: url("../img/rep.png"), pointer;
 }
 #page-wrapper {
     padding: 0 15px;

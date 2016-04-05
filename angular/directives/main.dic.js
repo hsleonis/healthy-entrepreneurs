@@ -62,6 +62,19 @@ app.directive('ngQassTable', function() {
     }
 });
 
+// Pattern table
+app.directive('ngPatternTable', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            angular.element(element).ready(function() {
+                
+            });
+        },
+        templateUrl: 'templates/queryass-table.tpl.html'
+    }
+});
+
 // Query table
 app.directive('ngQuTable', function() {
     return {
@@ -74,7 +87,6 @@ app.directive('ngQuTable', function() {
         templateUrl: 'templates/query-table.tpl.html'
     }
 });
-
 
 // Query list table
 app.directive('ngQlistTable', function() {

@@ -50,10 +50,10 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
 " />
                                             <input class="form-control" name="starflow" placeholder="Gerant ID pattern matching" ng-model="query.gerant_pattern">
                                         </div><!-- gerant id pattern -->
-                                            <!--<div class="form-group col-lg-6">
+                                            <div class="form-group col-lg-6">
                                                 <label>Make available to user</label>
                                                 <input type="checkbox" ng-model="query.gerant_user" name="gerant_user" />
-                                            </div>--><!-- Gerant to user -->
+                                            </div><!-- Gerant to user -->
                                         </div><!-- Gerant selection -->
                                         <div class="input-group col-xs-12">
                                         <div class="form-group col-sm-4">

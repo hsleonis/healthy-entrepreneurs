@@ -109,7 +109,7 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Email</label>
-                                            <input class="form-control" placeholder="Email" ng-model="eduser.username" ng-value="ed[2]" required>
+                                            <input class="form-control" placeholder="Email" ng-model="eduser.username" ng-value="ed[2]">
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Password</label>
@@ -139,6 +139,41 @@
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" ng-click="edForm.$valid && upUser(eduser, ed)">Save changes</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="modal fade" tabindex="-1" id="pattern-user-modal" role="dialog" patternUserModal>
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Set pattern for {{pt[1]}}</h4>
+                  </div>
+                  <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-success" ng-show="patternMsg">
+                                        {{patternMsg}}
+                                    </div>
+                                    <form id="ptForm" role="form" name="ptForm">
+                                        <div class="form-group col-lg-6">
+                                            <label>Pattern Label</label>
+                                            <input class="form-control" placeholder="Pattern Label" ng-model="ptuser.label" required>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label>Pattern</label>
+                                            <input class="form-control" placeholder="Pattern" ng-model="ptuser.pattern" required>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.col-md-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" ng-disabled="ptForm.$invalid" class="btn btn-primary" ng-click="setptUser(ptuser,pt)">Set pattern</button>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->

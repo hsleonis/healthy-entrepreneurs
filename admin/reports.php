@@ -30,7 +30,7 @@ echo "<script>var a=confirm('Please select a database first.'); if(typeof a!=='u
                                     <div class="alert alert-success" ng-show="creationMsg">
                                         {{creationMsg}}
                                     </div>
-                                    <a ng-repeat="r in reports" data-ng-click="getReport(r.ids.queryid, r.user_param)">
+                                    <a class="report-item" ng-repeat="r in reports" data-ng-click="getReport(r.ids.queryid, r.user_param)">
                                         <span class="dbname">{{r.data[1]}}</span>
                                     </a>
                                 </div>
@@ -42,7 +42,7 @@ echo "<script>var a=confirm('Please select a database first.'); if(typeof a!=='u
                     </div>
                     <div class="panel panel-default" ng-show="user_date || user_stratify || gerant_user">
                         <div class="panel-heading">
-                            Report variables
+                            Report variables <span class="report-title"></span>
                         </div>
                         <div class="panel-body">
                             <div class="row">

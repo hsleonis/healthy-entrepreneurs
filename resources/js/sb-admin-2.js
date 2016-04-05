@@ -44,6 +44,12 @@ $(function() {
     
     $("#regForm").validate();
     
+    $(document).on("click",".report-item",function(){
+        $(".active-db").removeClass('active-db');
+        $(this).children("span").addClass('active-db');
+        $(".report-title").html(' : <b>'+$(this).text()+'</b>');
+    });
+    
     $(document).scroll(function() {
 		var scroll	=	$(window).scrollTop();
 		var height	=	200;

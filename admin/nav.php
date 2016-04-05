@@ -57,6 +57,9 @@
                         <li>
                             <a href="page/user"><i class="fa fa-user fa-fw"></i> Users</a>
                         </li>
+                        <li>
+                            <a href="page/pattern"><i class="fa fa-sheqel fa-fw"></i> Pattern Manager</a>
+                        </li>
                         <?php else: ?>
                         <li>
                             <a href="page/reports"><i class="fa fa-user fa-fw"></i> Reports</a>
