@@ -27,6 +27,25 @@ img {
 #ui-id-2.ui-front{
     z-index: 2000;
 }
+/*.correct-pattern{
+    border-color: #27AE60 !important;
+}
+.correct-pattern:active,
+.correct-pattern:focus,.correct-pattern:hover{
+    box-shadow: inset 0 1px 1px rgba(39, 174, 96,.075),0 0 8px rgba(39, 174, 96,.6);
+}*/
+.correct-pattern:after{
+    content: '\f00c';
+    font-family: FontAwesome;
+    font-size: 18px;
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    color: #27AE70;
+    right: 10px;
+    top: 30px;
+    z-index: 9;
+}
 .dbname {
     height: 150px;
     width: 200px;
