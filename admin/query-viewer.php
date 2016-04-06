@@ -48,7 +48,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                             <label>Gerant ID pattern</label><img src="resources/img/tooltip.png" class="tooltip" title="Gerant ID Pa ttenr can be used to make a selection of Gerants. This can be like > 1000, < 2000 ; > 1000 AND < 2000, Basic AND / OR condition is expected to work. If this is applied, Other Gerant Selection Fields should be left blank. 
 To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keyboard shortcuts, press shortcut Ctrl+slash.
 " />
-                                            <input class="form-control" name="starflow" placeholder="Gerant ID pattern matching" ng-model="query.gerant_pattern">
+                                            <input class="form-control" name="starflow" placeholder="Gerant ID pattern matching" ng-model="query.gerant_pattern" ng-pattern>
                                         </div><!-- gerant id pattern -->
                                             <div class="form-group col-lg-6">
                                                 <label>Make available to user</label>
