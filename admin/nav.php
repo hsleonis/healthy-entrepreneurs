@@ -52,7 +52,7 @@
                             <a href="page/query-viewer"><i class="fa fa-gears fa-fw"></i> Query Builder</a>
                         </li>
                         <li>
-                            <a href="page/query-manager"><i class="fa fa-user fa-fw"></i> Query Manager</a>
+                            <a href="page/query-manager"><i class="fa fa-inbox fa-fw"></i> Query Manager</a>
                         </li>
                         <li>
                             <a href="page/user"><i class="fa fa-user fa-fw"></i> Users</a>
