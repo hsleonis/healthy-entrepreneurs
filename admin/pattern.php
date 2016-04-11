@@ -39,14 +39,14 @@ if(isset($_SESSION['type']) && $_SESSION['type']==0) :
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Pattern *</label>
-                                            <input class="form-control" placeholder="Pattern" ng-model="ptuser.pattern" ng-pattern required>
+                                            <input class="form-control" placeholder="Pattern" ng-model="ptuser.value" ng-pattern required>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Pattern Label *</label>
                                             <input class="form-control" placeholder="Pattern Label" ng-model="ptuser.label" required>
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <button type="button" ng-click="setpt(ptuser)" class="btn btn-default">Assign Query</button>
+                                            <button type="button" ng-click="setpt(ptuser)" class="btn btn-default">Assign Pattern</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
                                         </div>
                                     </form>

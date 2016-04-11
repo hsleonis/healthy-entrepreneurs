@@ -501,7 +501,7 @@ app.controller('patternController', [ '$http', '$scope', function ($http, $scope
     $scope.query = {};
     var baseURL = globalvars().baseURL;
     
-    // Query list
+    // Pattern list
     $http.post(baseURL+'user_query',{hash: modhash, dbid: curdb })
             .success (function (response) {
             $scope.queryList = response.data.item;
@@ -514,8 +514,8 @@ app.controller('patternController', [ '$http', '$scope', function ($http, $scope
             },100);
     });
     
-    // Assigned Query table
-    $http.post(baseURL+'user_query_list',{hash: modhash})
+    // Assigned Pattern table
+    $http.post(baseURL+'pattern_list',{hash: modhash})
         .success (function (response) {
         $scope.json = response.data;
         if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
@@ -537,8 +537,8 @@ app.controller('patternController', [ '$http', '$scope', function ($http, $scope
         $scope.userList = data.data.item;
     });
 
-    // Assign Query
-    $scope.assignQuery = function(query){
+    // Assign Pattern
+    $scope.setpt = function(query){
         $('.preloader').show(50);
         if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
             table.destroy();
@@ -547,10 +547,10 @@ app.controller('patternController', [ '$http', '$scope', function ($http, $scope
         $scope.query.query = 'true';
         $scope.query.dbid = curdb;
         
-        $http.post(baseURL+'assign_query',query).success(function(data){
+        $http.post(baseURL+'save_pattern',query).success(function(data){
             $scope.creationMsg = data.response;
             
-            $http.post(baseURL+'user_query_list',{hash: modhash})
+            $http.post(baseURL+'pattern_list',{hash: modhash})
             .success (function (response) {
                 $scope.json = response.data;
                 setTimeout(function(){
@@ -566,8 +566,8 @@ app.controller('patternController', [ '$http', '$scope', function ($http, $scope
         });
     };
     
-    // Delete Assigned Query
-    $scope.rmAss = function(userid, queryid) {
+    // Delete Assigned Pattern
+    $scope.rmAss = function(userid, patternid) {
         if(confirm("This action cannot be undone. Are you sure?")){
             $('.preloader').show(50);
             if ( $.fn.dataTable.isDataTable( '#data-table' ) ) {
@@ -575,14 +575,14 @@ app.controller('patternController', [ '$http', '$scope', function ($http, $scope
             }
             var aquery= {
                 userid : userid,
-                queryid : queryid,
+                patternid : patternid,
                 query : 'true',
                 dbid : curdb
 }
-            $http.post(baseURL+'remove_assign',aquery).success(function(data){
+            $http.post(baseURL+'remove_pattern',aquery).success(function(data){
                 $scope.creationMsg = data.response;
 
-                $http.post(baseURL+'user_query_list',{hash: modhash})
+                $http.post(baseURL+'pattern_list',{hash: modhash})
                 .success (function (response) {
                     $scope.json = response.data;
                     setTimeout(function(){
@@ -599,7 +599,7 @@ app.controller('patternController', [ '$http', '$scope', function ($http, $scope
         }
     };
     
-    // Delete Query
+    // Delete Pattern
     $scope.rmQuery = function(el){
         
         if(confirm("This action cannot be undone. Are you sure?")){
@@ -652,6 +652,11 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
     $http.post(baseURL+'user_query',{hash: modhash, dbid: curdb})
             .success (function (response) {
             $scope.reports = response.data.item;
+    });
+    
+    $http.post(baseURL+'user_pattern_list',{hash: modhash, dbid: curdb})
+            .success (function (response) {
+            $scope.patternlist = response.data.item;
     });
     
     $scope.showReport = function(id){
@@ -709,6 +714,10 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
             $scope.showReport(id);
         }
     };
+    
+    $(document).on('change','#patternSelector',function(){
+        console.log($(this).val());
+    });
 }]);
 
 app.controller('userTableController',[ '$http', '$scope', function($http, $scope) {}]);

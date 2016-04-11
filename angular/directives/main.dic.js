@@ -71,7 +71,7 @@ app.directive('ngPatternTable', function() {
                 
             });
         },
-        templateUrl: 'templates/queryass-table.tpl.html'
+        templateUrl: 'templates/pattern-table.tpl.html'
     }
 });
 

@@ -1,0 +1,15 @@
+<thead>
+    <tr>
+        <th ng-repeat="thead in json.head track by $index">{{thead}}</th>
+        <th data-sortable="false"></th>
+    </tr>
+</thead>
+<tbody>
+    <tr ng-repeat="el in json.item track by $index" class="{{el.class}}">
+        <td ng-repeat="p in el.data track by $index">{{p}}</td>
+        <td>
+            <span class="rm-user" ng-click="rmAss(el.ids.userid,el.ids.patternid)"><i class="fa fa-trash"></i>
+</span>
+        </td>
+    </tr>
+</tbody>
