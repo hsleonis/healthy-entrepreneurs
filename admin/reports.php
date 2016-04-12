@@ -47,7 +47,7 @@ echo "<script>var a=confirm('Please select a database first.'); if(typeof a!=='u
                         <div class="panel-body">
                             <div class="row">
                                 <div class="input-group col-sm-12">
-                                    <div ng-show="gerant_user">
+                                    <div ng-show="user_gerant">
                                         <div class="form-group col-sm-4">
                                             <label>Gerant ID</label><img src="resources/img/tooltip.png" class="tooltip" title="ID / Username of gerant you want to be selected for the query. Can be multiple if given comma separated values. i.e. 1000,1002, Giving this value means any other gerant selection value (Gerant Area, Gerant ID Pattern will be ignored for the query) " />
                                             <input id="gerantid" class="form-control" placeholder="Gerant ID" ng-model="query.gerantid" name="gerantid" value="">

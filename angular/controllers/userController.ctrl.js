@@ -709,8 +709,9 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
         
         $scope.user_date = param.user_date;
         $scope.user_stratify = param.user_stratify;
+        $scope.user_gerant = param.user_gerant;
         
-        if(!param.user_date && !param.user_stratify && !param.gerant_user) {
+        if(!param.user_date && !param.user_stratify && !param.user_gerant) {
             $scope.showReport(id);
         }
     };
