@@ -12,7 +12,7 @@ app.directive('ngPattern', function() {
     require: 'ngModel',
     link: function(scope, element, attrs, modelCtrl) {
       modelCtrl.$parsers.push(function(inputValue) {
-        var transformedInput = inputValue.match(/^[<>]\=?\d+(\s+(and|or)\s+[<>]\=?\d+)?$/ig);
+        var transformedInput = inputValue.match(/^[<>]\=?\s*\d+(\s+(and|or)\s+[<>]\=?\s*\d+)?$/ig);
 
         if (transformedInput !== null) {
           element.parent().addClass('correct-pattern');

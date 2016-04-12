@@ -717,6 +717,10 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
     };
     
     $(document).on('change','#patternSelector',function(){
+        $scope.$apply(function() {
+            $scope.query.gerant_pattern = $("#patternSelector").val();
+        });
+        $("#pattern-container").parent().addClass('correct-pattern');
         console.log($(this).val());
     });
 }]);
