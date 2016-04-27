@@ -19,8 +19,6 @@
 
     $pages=array('index','header','footer','404','nav');
 	
-	require_once('config/function.php');
-	
 	require_once('admin/header.php');
     if(isset($_GET['page'])) {
         if(file_exists("admin/".$_GET['page'].".php") && !in_array($_GET['page'], $pages)) {

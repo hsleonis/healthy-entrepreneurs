@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * AlQuran Main Functions File
+	 * Dashboard Main Functions File
 	 * @author Shahriar
 	 * @version 1.0.1
 	*/
