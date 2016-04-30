@@ -61,6 +61,7 @@ To enable screen reader support, press shortcut Ctrl+Alt+Z. To learn about keybo
                                         <div class="form-group col-sm-4">
                                             <label>Available patterns</label>
                                             <select id="patternSelector" class="form-control" name="age">
+                                                <option value="">Select any</option>
                                                 <option ng-repeat="item in patternlist" value="{{item.data[1]}}">{{item.data[0]}}</option>
                                             </select>
                                         </div><!-- age -->
