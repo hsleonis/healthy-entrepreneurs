@@ -665,7 +665,6 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
         $scope.query.query = 'true'; // For testing DB Name
         $scope.query.dbid = curdb; // For testing DB ID
         $scope.query.queryid = id | $scope.curId;
-        // {queryid:id,dbid: curdb,query:'true'}
         $http.post(baseURL+'query_db',$scope.query).success(function(data){
             if(typeof data.code!=='undefined' && typeof data.data!=='undefined' && data.code==1) {
                 
@@ -721,7 +720,6 @@ app.controller('reportController', [ '$http', '$scope', function ($http, $scope)
             $scope.query.gerant_pattern = $("#patternSelector").val();
         });
         $("#pattern-container").parent().addClass('correct-pattern');
-        console.log($(this).val());
     });
 }]);
 
